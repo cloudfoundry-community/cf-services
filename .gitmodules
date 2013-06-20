@@ -1,0 +1,9 @@
+[submodule "release/shared"]
+	path = release/shared
+	url = https://github.com/cloudfoundry/shared-release-packages.git
+[submodule "release/src/warden"]
+	path = release/src/warden
+	url = https://github.com/cloudfoundry/warden.git
+[submodule "tests"]
+	path = tests
+	url = https://github.com/cloudfoundry/vcap-yeti.git

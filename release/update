@@ -1,0 +1,9 @@
+#!/bin/bash
+set -x -u -e
+
+git pull
+git submodule foreach --recursive git submodule sync
+git submodule update --init --recursive
+
+cat config/services-blobs.yml > config/blobs.yml
+grep -v -e --- shared/config/blobs.yml >> config/blobs.yml

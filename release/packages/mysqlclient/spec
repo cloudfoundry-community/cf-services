@@ -1,0 +1,4 @@
+---
+name: mysqlclient
+files:
+- mysql/client-5.5.29-rel29.4-401.Linux.x86_64.tar.gz

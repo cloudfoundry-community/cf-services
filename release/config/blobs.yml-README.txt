@@ -1,0 +1,14 @@
+TODO: Reduce coupling with cloudfoundry/shared-release-packages by:
+
+ o removing blobs.yml from source control with a .gitignore;
+
+ o putting service-specific blobs in a new file (called
+   "services-blobs.yml" for example); and
+
+ o putting something like this in ../update to dynamically
+   read the shared blobs from shared/config/blobs.yml:
+     cat config/services-blobs.yml > config/blobs.yml
+     grep -v -e --- shared/config/blobs.yml >> config/blobs.yml
+
+Unfortunately, this is blocked by
+https://github.com/cloudfoundry/shared-release-packages/issues/1.
