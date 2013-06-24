@@ -1,0 +1,11 @@
+---
+name: postgresql_node
+dependencies:
+- postgresql92
+- sqlite
+- ruby
+files:
+- services/postgresql/**/*
+- warden/warden/**/*
+- pkg_utils/*
+- common/services/utils.sh

@@ -35,3 +35,12 @@ ruby/ruby-1.9.3-p392.tar.gz:
   object_id: rest/objects/4e4e78bca61e121204e4e86eebe5910513a3270968f3
   sha: ec75fcbd3b6b46ce6ec997ee4c86145b4abd5748
   size: 12557294
+postgresql/postgresql-9.2.4-x86_64.tar.gz:
+  object_id: rest/objects/4e4e78bca31e122204e4e9863b1b740516451dfdeda2
+  sha: !binary |-
+    Y2YzNDBjYTUxZWNhYWZjMDRhYTlkM2M2NDkwZmI3ZDU3ZmQ1YTNiNw==
+  size: 10519400
+postgresql/postgresql-initdb-9.2-x86_64.tar.gz:
+  object_id: rest/objects/4e4e78bca11e122004e4e8ec6484310513946c1ccb48
+  sha: 6f46ff94648219840fa475eb95bfa23a5f4bf905
+  size: 4146878
