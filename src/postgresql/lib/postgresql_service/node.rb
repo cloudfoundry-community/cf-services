@@ -79,6 +79,31 @@ class VCAP::Services::Postgresql::Node
     end
   end
 
+  alias :orig_on_connect_node :on_connect_node
+  def on_connect_node
+    orig_on_connect_node
+    @node_nats.subscribe("#{service_name}.ioctl.#{@node_id}") { |msg, reply| EM.defer{ on_ioctl(msg, reply) } }
+  end
+
+  class IoctlResponse < ServiceMessage
+    required :success
+    optional :response
+    optional :error
+  end
+
+  def on_ioctl(msg, reply)
+    response = IoctlResponse.new
+    @logger.debug("#{service_description}: ioctl: #{msg} from #{reply}")
+    timing_exec(@op_time_limit) do
+      response.response = "The answer to '#{msg}' is 42."
+      response
+    end
+    publish(reply, encode_success(response))
+  rescue => e
+    @logger.warn("Exception at on_ioctll #{e}")
+    publish(reply, encode_failure(response, e))
+  end
+
   def prepare_global_connections
     @connection_mutex = Mutex.new
     @discarded_mutex = Mutex.new

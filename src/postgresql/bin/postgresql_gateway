@@ -28,4 +28,20 @@ class VCAP::Services::Postgresql::Gateway < VCAP::Services::Base::Gateway
 
 end
 
+class VCAP::Services::AsynchronousServiceGateway
+  put "/gateway/v1/configurations/:id/ioctl" do
+    id = params["id"]
+    payload = request_body
+    @logger.info("Processing ioctl '#{payload}' for service instance #{id}")
+    @provisioner.ioctl(id, payload) do |msg|
+      if msg['success']
+        async_reply(msg['response'])
+      else
+        async_reply_error(msg['response'])
+      end
+    end
+    async_mode
+  end
+end
+
 VCAP::Services::Postgresql::Gateway.new.start
